@@ -1,0 +1,15 @@
+<h2>Escola uma plataforma</h2><br>
+<div class="row">
+  <div class="col-md-4" *ngFor="let p of plataformas.plataformas">
+    <div class="card text-center" id="{{p.sku}}">
+      <img src="assets/img/tablet.jpg" class="card-img-top w-75" alt="tablet" *ngIf="p.sku == 'TBT01'">
+      <img src="assets/img/computador.jpg" class="card-img-top w-75" alt="computador" *ngIf="p.sku == 'CPT02'">
+      <img src="assets/img/wifi.jpg" class="card-img-top w-75" alt="wifi" *ngIf="p.sku == 'WF03'">
+      <div class="card-body">
+        <h5 class="card-title">{{p.nome}}</h5>
+        <p class="card-text">{{p.descricao}}</p>
+        <a routerLink="/plataformas/planos/{{p.sku}}"  (click)="enviaValor(p.nome)" class="btn btn-danger">CONTRATAR</a>
+      </div>
+    </div>
+  </div>
+</div>

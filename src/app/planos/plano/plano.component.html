@@ -1,0 +1,41 @@
+
+<h2>Escolha um plano - {{valueFromFirstComponent}}</h2><br>
+<div class="row">
+  <div class="col-md-4" *ngFor="let pl of plano.planos">
+    <div class="card w-100">
+      <div class="card-body">
+        <div class="float-left">
+          <h5 class="card-title">{{ pl.franquia }}</h5>
+          <p class="card-text">R$ {{ pl.valor }}</p>
+        </div>
+        
+        <a (click)="enviaValor([valueFromFirstComponent + ' - ' + pl.sku + ' - ' + pl.valor + ' - ' + pl.franquia])" 
+        routerLink="/plataformas/planos/form/{{pl.sku}}/" 
+        class="btn btn-danger btn-lg float-right mt-2" 
+        [ngClass]="{'disabled': pl.ativo == false}" [hidden]="sku != 'TBT01'">
+            Contratar
+        </a>
+
+        <a *ngIf="sku == 'CPT02' || sku == 'WF03'" 
+        (click)="enviaValor([valueFromFirstComponent + ' - ' + pl.sku + ' - ' 
+        + pl.valor + ' - ' + pl.franquia + ' - ' + pl.aparelho.nome + ' - ' 
+        + 'Valor: ' + pl.aparelho.valor + ' - ' + 'Nº Parcelas: ' + pl.aparelho.numeroParcelas + ' - ' + 'Valor Parcela: ' + pl.aparelho.valorParcela])" 
+        routerLink="/plataformas/planos/form/{{pl.sku}}/" 
+        class="btn btn-danger btn-lg float-right mt-2" 
+        [ngClass]="{'disabled': pl.ativo == false}">
+            Contratar
+        </a>
+        
+      </div>
+      <div class="dados-aparelho text-center p-2" *ngIf="sku == 'CPT02' || sku == 'WF03'" style="border-top: 1px solid #ddd;">
+        <h5 class="w-100">Aparelho</h5>
+          <ul class="nav flex-column">
+            <li class="nav-item">Nome: {{ pl.aparelho.nome }}</li>
+            <li class="nav-item">Valor: R$ {{ pl.aparelho.valor }}</li>
+            <li class="nav-item">Nº de Parcelas: {{ pl.aparelho.numeroParcelas }}</li>
+            <li class="nav-item">Valor da Parcela: {{ pl.aparelho.valorParcela }}</li>
+          </ul>
+        </div>
+    </div><br>
+  </div>
+</div>
